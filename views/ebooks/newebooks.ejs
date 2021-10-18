@@ -1,0 +1,71 @@
+<% layout('layouts/boilerplate')%>
+    <div class="container ">
+        <h2>New Arrivals</h2>
+        <br>
+        <% for(let i=0;i<18;i+=3){%>
+            <div class="container-fluid">
+                <div class="row">
+
+                    <div class="col-sm-4 mb-4">
+                        <div class="card" style="width: 18rem;">
+                            <img class="card-img-top" src="<%= ebooks[i].image %> " alt="Card image cap">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <%= ebooks[i].title %>
+                                </h5>
+
+                                <p class="card-text">
+                                    <%= ebooks[i].subtitle %>
+                                </p>
+                                <p class="card-text">
+                                    <%= ebooks[i].price %>
+                                </p>
+                                <a href="<%= ebooks[i].url %>  " class="btn btn-info">Download</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4 mb-4">
+                        <div class="card" style="width: 18rem;">
+                            <img class="card-img-top" src="<%= ebooks[i+1].image %> " alt="Card image cap">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <%= ebooks[i+1].title %>
+                                </h5>
+
+                                <p class="card-text">
+                                    <%= ebooks[i+1].subtitle %>
+                                </p>
+                                <p class="card-text">
+                                    <%= ebooks[i+1].price %>
+                                </p>
+                                <a href="<%= ebooks[i+1].url %>  " class="btn btn-info">Download</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4 mb-4">
+                        <div class="card" style="width: 18rem;">
+                            <img class="card-img-top" src="<%= ebooks[i+2].image %> " alt="Card image cap">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <%= ebooks[i+2].title %>
+                                </h5>
+
+                                <p class="card-text">
+                                    <%= ebooks[i+2].subtitle %>
+                                </p>
+                                <p class="card-text">
+                                    <%= ebooks[i+2].price %>
+                                </p>
+                                <a href="<%= ebooks[i+2].url %>  " class="btn btn-info">Download</a>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                </div>
+            </div>
+
+
+            <% } %>
+    </div>
