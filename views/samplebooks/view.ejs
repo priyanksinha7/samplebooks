@@ -29,11 +29,20 @@
                         <%= book.price %>
                     </h6>
                 </nobr>
-                <button class="btn btn-primary">Buy now!</button>
+                <form action="/order/<%=book._id%>" method="get"><button class="btn btn-primary">Buy now!</button>
+                </form>
             </div>
 
         </div>
     </div>
+    <br>
+    <hr>
+    <marquee>
+
+        <p class="btn btn-dark">o- --- -o-- -o--- -o--o- -- --- --o- --Leave a Review Reminder Train &#128513 -- -- -o- -o-- -o--- -o---- -- --- -o-- -o--- --o---o</p>
+
+    </marquee>
+    <hr>
     <div class="container">
 
         <h2>Leave a Review</h2>

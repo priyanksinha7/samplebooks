@@ -1,5 +1,22 @@
 <% layout('layouts/boilerplate')%>
+
     <div class="container ">
+        <div class="row">
+            <h2>Search That E-book You Want...</h2>
+            <form action="/search" method="post">
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" name="query" id="inlineCheckbox1" value="query">
+                    <label class="form-check-label" for="inlineCheckbox1">Query</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" name="author" id="inlineCheckbox2" value="author">
+                    <label class="form-check-label" for="inlineCheckbox2">Author</label>
+                </div>
+                <input type="text" name="searchquery" value="">
+                <button class="btn btn-dark">Search</button>
+            </form>
+        </div>
+        <hr>
         <h2>New Arrivals</h2>
         <br>
         <% for(let i=0;i<18;i+=3){%>

@@ -1,0 +1,91 @@
+<% layout('layouts/boilerplate')%>
+    <div class="container" align="center">
+        <div>
+            <h2>CONFIRM YOUR ORDER</h2>
+            <hr>
+        </div>
+
+
+        <div class="col-3">
+            <div class="card">
+                <img class="card-img-top" src="https://m.media-amazon.com/images/I/41gr3r3FSWL.jpg" alt="Card image cap">
+
+                <div class="card-body">
+                    <h5 class="card-title">
+                        <%= book.name %>
+                    </h5>
+                    <small class="text-muted"><B>Author:-</B>  <%= book.author %> </small>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <div class="container">
+        <div class="col-6 py-1">
+            <form action="/order/submit/<%= book._id %>" method="post" class="validated">
+                <div class="container">
+                    <h5>Your Address</h5>
+                    <div class="mb-3">
+
+                        <label class="form-label" for="Locality">Locality</label>
+                        <input class="form-control" type="text" id="locality" name="locality" required autofocus>
+                        <div class="valid-feedback">
+                            Looks good!
+                        </div>
+                    </div>
+                    <div class="mb-3">
+
+                        <label class="form-label" for="block">Sector/Village/Block</label>
+                        <input class="form-control" type="text" id="block" name="block" required autofocus>
+                        <div class="valid-feedback">
+                            Looks good!
+                        </div>
+                    </div>
+                    <div class="mb-3">
+
+                        <label class="form-label" for="city">City</label>
+                        <input class="form-control" type="text" id="city" name="city" required autofocus>
+                        <div class="valid-feedback">
+                            Looks good!
+                        </div>
+                    </div>
+                    <div class="mb-3">
+
+                        <label class="form-label" for="state">State</label>
+                        <input class="form-control" type="text" id="state" name="state" required autofocus>
+                        <div class="valid-feedback">
+                            Looks good!
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="pin">PIN</label>
+                        <input class="form-control" type="text" id="pin" name="pin" required autofocus>
+                        <div class="valid-feedback">
+                            Looks good!
+                        </div>
+                    </div>
+                    <h6>
+                        Price is:₹
+                        <%= book.price %>
+                    </h6>
+                </div>
+                <hr>
+                <div class="container">
+                    <h4>
+                        Pay Via:
+
+                    </h4>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="1" id="flexCheckChecked" checked disabled>
+                        <label class="form-check-label" for="flexCheckChecked">
+                          Cash on Delivery
+                        </label>
+                    </div>
+                </div>
+                <div class="container pt-3 py-3">
+                    <button class="btn btn-dark">Place</button>
+                </div>
+            </form>
+        </div>
+
+    </div>

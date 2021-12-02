@@ -50,7 +50,7 @@ app.get('/home', (req, res) => {
     res.render('home');
 })
 
-
+//BOOK STARTS
 app.get('/books', async(req, res) => {
 
     const books = await Book.find({});
@@ -67,14 +67,17 @@ app.get('/books/:id', async(req, res) => {
     res.render('samplebooks/view', { book });
 })
 app.post('/books/:id/review', async(req, res) => {
-    const book = await Book.findById(req.params.id);
-    const review = new Review(req.body.review);
-    // review.author = req.user._id;
-    book.reviews.push(review);
-    await review.save();
-    await book.save();
-    res.redirect(`/books/${book._id}`);
-})
+        const book = await Book.findById(req.params.id);
+        const review = new Review(req.body.review);
+        // review.author = req.user._id;
+        book.reviews.push(review);
+        await review.save();
+        await book.save();
+        res.redirect(`/books/${book._id}`);
+    })
+    //BOOK ENDS
+
+//Ebooks
 app.get('/ebooks', async(req, res) => {
     const ebooks = await eBook.find({});
     res.render('ebooks/newebooks', { ebooks });
@@ -103,11 +106,30 @@ app.get('/ebooks/request', async(req, res) => {
     res.render('ebooks/requests');
 })
 
+app.get('/order/:id', async(req, res) => {
+    const { id } = req.params;
+    const book = await Book.findById(id);
+    res.render('samplebooks/order', { book });
+})
+app.post('/order/submit/:id', async(req, res) => {
+        console.log("That's the book", req.body);
+        res.render('samplebooks/orderconfirm');
+    })
+    //E books end
+    // Search
+app.post('/search', async(req, res) => {
+        const { query, author, searchquery } = req.body;
+        if (query) {
+            const result = searchQuery(searchquery);
+            res.render('ebooks/results', { result });
+        } else if (author) {
+            const result = searchAuthor(author);
+            res.render('ebooks/results', { result });
+        }
+    })
+    //Search ends
 
-
-
-
-
+//A and A
 
 app.get('/register', async(req, res) => {
     res.render('users/register');
@@ -119,7 +141,7 @@ app.get('/login', async(req, res) => {
     res.render('users/login');
 })
 
-
+//A and A
 
 
 
@@ -132,4 +154,3 @@ app.get('/login', async(req, res) => {
 app.listen(3000, () => {
     console.log("llistening to it!!");
 })
-
