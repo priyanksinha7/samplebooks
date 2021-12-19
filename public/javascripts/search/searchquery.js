@@ -1,47 +1,43 @@
-const ebooks = require('../../../models/ebook');
-// var MongoClient = require('mongodb').MongoClient;
-// var url = "mongodb://localhost:27017/";
-let arr = [];
+const mongoose = require('mongoose');
+const eBook = require('../../../models/ebook');
+const { max, longestCommonSubsequence } = require("./searchutils/lcsubs");
 
-MongoClient.connect(url, function(err, db) {
-    if (err) throw err;
-    var dbo = db.db("samplebooks");
-    dbo.collection("ebooks").find({}).toArray(function(err, result) {
-        if (err) throw err;
-        arr.push(...result);
-        db.close();
-        
-    });
-})
-
-const findit=(str)=>
-{
-   
+mongoose.connect('mongodb://localhost:27017/samplebooks', {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+});
+const db = mongoose.connection;
+db.on("error", console.error.bind(console, "connection error:"));
+db.once("open", () => {
+    console.log("Database connected");
+});
+let arr = [{}];
+const findDB = async() => {
+    const books = await eBook.find({});
+    return books;
 }
-function isSubstring( s1,  s2)
-{
-    let M = s1.length();
-    let N = s2.length();
- 
-    /* A loop to slide pat[] one by one */
-    for (let i = 0; i <= N - M; i++) {
-        let j;
- 
-        /* For current index i, check for
- pattern match */
-        for (j = 0; j < M; j++)
-            if (s2[i + j] != s1[j])
-                break;
- 
-        if (j == M)
-            return i;
+
+const makeString = async(booktofind) => {
+    let bookName = [{}];
+    const res = await findDB();
+
+
+    for (r of res) {
+        let temp_st = "" + r.title;
+        temp_st = temp_st.toLowerCase();
+        let booktf = "" + booktofind;
+        booktf = booktf.toLowerCase();
+
+        if (longestCommonSubsequence(booktf, temp_st) >= 3) {
+
+            bookName.push(r);
+        }
+
+
     }
- 
-    return -1;
-}
- 
+    return bookName;
 
-// const findit = async() => {
-//     console.log(ebooks.);
-// }
-// findit();
+
+
+}
+module.exports = makeString;

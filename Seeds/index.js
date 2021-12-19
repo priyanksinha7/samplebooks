@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const books = require('./books');
 const Book = require('../models/book');
-
+const eBook = require('../models/ebook');
 
 mongoose.connect('mongodb://localhost:27017/samplebooks', {
     useNewUrlParser: true,
@@ -15,6 +15,7 @@ db.once("open", () => {
 
 const seedDB = async() => {
     await Book.deleteMany({});
+
     for (let i = 0; i < 200; i++) {
         const random1000 = Math.floor(Math.random() * 1000);
         const price = Math.floor(Math.random() * 20) + 10;

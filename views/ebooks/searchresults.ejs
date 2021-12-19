@@ -1,0 +1,42 @@
+<% layout('layouts/boilerplate')%>
+
+    <div class="container ">
+        <% if (ebooks.length==1) { %>
+            <h2>Ain't any eBook,But Will get you one,We promise Bud &#128521;</h2>
+            <hr>
+            <a class="btn btn-dark" href="/ebooks/request"> Submit a Book Request!</a>
+            <% } else { %>
+                <h2>We found you something,Bud &#128521;</h2>
+                <hr>
+                <br>
+
+                <% for(let i=1;i<ebooks.length-1;i++){%>
+                    <div class="container-fluid">
+                        <div class="row">
+
+                            <div class="col-sm-4 mb-4">
+                                <div class="card" style="width: 18rem;">
+                                    <img class="card-img-top" src="<%= ebooks[i].image %> " alt="Card image cap">
+                                    <div class="card-body">
+                                        <h5 class="card-title">
+                                            <%= ebooks[i].title %>
+                                        </h5>
+
+                                        <p class="card-text">
+                                            <%= ebooks[i].subtitle %>
+                                        </p>
+                                        <p class="card-text">
+                                            <%= ebooks[i].price %>
+                                        </p>
+                                        <a href="<%= ebooks[i].url %>  " class="btn btn-info">Download</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+
+                    <% } %>
+                        <% } %>
+    </div>

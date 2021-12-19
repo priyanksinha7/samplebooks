@@ -10,6 +10,8 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local');
 const User = require('./models/user');
 const Review = require('./models/review');
+const makeString = require('./public/javascripts/search/searchquery');
+const getBook = require('./API/SAPI/ITBS');
 mongoose.connect('mongodb://localhost:27017/samplebooks', {
     useNewUrlParser: true,
     useUnifiedTopology: true,
@@ -118,14 +120,15 @@ app.post('/order/submit/:id', async(req, res) => {
     //E books end
     // Search
 app.post('/search', async(req, res) => {
-        const { query, author, searchquery } = req.body;
-        if (query) {
-            const result = searchQuery(searchquery);
-            res.render('ebooks/results', { result });
-        } else if (author) {
-            const result = searchAuthor(author);
-            res.render('ebooks/results', { result });
-        }
+        const { searchquery } = req.body;
+        const temp_st = "" + searchquery;
+        console.log(temp_st);
+        //https://api.itbook.store/1.0/search/mongodb
+        const ebooks = await makeString(temp_st);
+        const temp_res = await getBook(temp_st);
+        ebooks.push(...temp_res);
+        res.render('ebooks/searchresults', { ebooks });
+
     })
     //Search ends
 
